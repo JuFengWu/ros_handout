@@ -1,0 +1,10 @@
+ROS_UI/build
+ROS_UI/install
+ROS_UI/log
+basic_ros/build
+basic_ros/install
+basic_ros/log
+turtlebot_test/build
+turtlebot_test/install
+turtlebot_test/log
+*.pyc
