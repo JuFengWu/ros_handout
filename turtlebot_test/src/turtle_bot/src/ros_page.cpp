@@ -1,4 +1,6 @@
 #include "main_window.hpp"
+#include "geometry_msgs/msg/twist.hpp"
+#include "nav_msgs/msg/odometry.hpp"
 
 RosPage::RosPage(std::string nodeName)
 {
@@ -6,7 +8,7 @@ RosPage::RosPage(std::string nodeName)
 
   publisher = node->create_publisher<geometry_msgs::msg::Twist>("cmd_vel", 10);
   
-  feedBackStatusSubscription = node->create_subscription<std_msgs::msg::String>(
+  feedBackStatusSubscription = node->create_subscription<nav_msgs::msg::Odometry>(
     "topic", 10, std::bind(&RosPage::feedback_states_callback, this, std::placeholders::_1));
 }
 RosPage::~RosPage(){
@@ -19,7 +21,7 @@ void RosPage::run(){
 }
 void RosPage::feedback_states_callback(nav_msgs::msg::Odometry::SharedPtr msg){
   
-  get_status(msg->pose.pose.position.x,msg->pose.pose.position.y,msg->pose.pose.orientation);
+  get_status(msg->pose.pose.position.x,msg->pose.pose.position.y);
 }
 void RosPage::send_message(double v, double rotation){
   

@@ -16,6 +16,8 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
 
 
 # Qt5
@@ -59,6 +61,8 @@ add_executable(robot_ui ${SRCS} ${UIC_FILES} ${HEADERS})
 ament_target_dependencies(robot_ui
   rclcpp
   std_msgs
+  geometry_msgs
+  nav_msgs
 )
 target_link_libraries(robot_ui
   Qt5::Core
@@ -68,14 +72,11 @@ target_link_libraries(robot_ui
 )
 
 
-# Install libraries
 install(TARGETS
 robot_ui
-	DESTINATION lib/${PROJECT_NAME}
+  DESTINATION lib/${PROJECT_NAME}
 )
 
-install(
-  DIRECTORY launch
-  DESTINATION share/${PROJECT_NAME}
-)
+
+
 ament_package()
