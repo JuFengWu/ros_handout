@@ -29,7 +29,8 @@ MainWindow::MainWindow(QWidget *parent)
   initial_ros_thread_to_ui_page();
 }
 void MainWindow::show_status(double a,double b){
-  //ui->label->setText(QString::fromStdString(msg));
+  ui->label->setText(QString::fromStdString(std::to_string(a)));
+  ui->label_3->setText(QString::fromStdString(std::to_string(b)));
 }
 
 void MainWindow::click_speed_up_button(){
@@ -41,8 +42,13 @@ void MainWindow::click_speed_down_button(){
   send_speed(speed);
 }
 void MainWindow::click_set_speed_button(){
-  std::string value = ui->lineEdit->text();
-  speed = std::to_doubel(value);
+  std::string value = ui->lineEdit->text().toUtf8().constData();;
+  speed = std::stod(value);
+  try {
+    speed = std::stod(value);
+  } catch (...){
+    std::cout<<"value is "<<value<<std::endl;
+  }
   send_speed(speed);
 }
 void MainWindow::click_speed_0_button(){

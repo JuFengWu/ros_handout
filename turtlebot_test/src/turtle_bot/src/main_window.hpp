@@ -44,9 +44,10 @@ private:
   
 signals:
   void get_status(double vx, double vy);
-  void send_speed(double);
+  
 private slots:
   void send_message(double v, double rotation);
+  void send_speed(double);
   
 };
 
@@ -72,7 +73,7 @@ private slots:
   void show_status(double vx, double vy);
   void click_speed_up_button();
   void click_speed_down_button();
-  void click_set_speed_button(){;
+  void click_set_speed_button();
   void click_speed_0_button();
   void click_rotation_up_button();
   void click_rotation_down_button();

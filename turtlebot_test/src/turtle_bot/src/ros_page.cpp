@@ -9,7 +9,7 @@ RosPage::RosPage(std::string nodeName)
   publisher = node->create_publisher<geometry_msgs::msg::Twist>("cmd_vel", 10);
   
   feedBackStatusSubscription = node->create_subscription<nav_msgs::msg::Odometry>(
-    "topic", 10, std::bind(&RosPage::feedback_states_callback, this, std::placeholders::_1));
+    "odom", 10, std::bind(&RosPage::feedback_states_callback, this, std::placeholders::_1));
 }
 RosPage::~RosPage(){
   rclcpp::shutdown();
@@ -27,9 +27,14 @@ void RosPage::send_message(double v, double rotation){
   
   auto message = geometry_msgs::msg::Twist();
 
-  message.linear.x = v;
+  message.linear.y = v;
   message.angular.z = rotation;
   
   publisher->publish(message);
- 
+}
+void RosPage::send_speed(double value){
+  geometry_msgs::msg::Twist data;
+  data.linear.x = value;
+  data.angular.z = 0;
+  publisher->publish(data);
 }
