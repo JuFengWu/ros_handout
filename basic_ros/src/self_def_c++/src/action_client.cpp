@@ -75,7 +75,7 @@ private:
   {
     
     RCLCPP_INFO(this->get_logger(), "feedback value is %f", feedback->value);
-     client_ptr_->async_cancel_all_goals(); // this will cancel 
+    client_ptr_->async_cancel_all_goals(); // this will cancel 
   }
 
   void result_callback(const GoalHandleAction::WrappedResult & result)
