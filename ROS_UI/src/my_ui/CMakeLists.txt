@@ -24,10 +24,10 @@ find_package(Qt5Quick REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON) # 啟用 MOC (Meta-Object Compiler) 的自動化。MOC 是 Qt 對 C++ 程式進行擴充的一個工具,可以讓程式使用 Qt 的信號和插槽機制
+set(CMAKE_AUTOUIC ON) # 啟用該選項後,CMake 會自動將 .ui 檔案轉換為相應的 C++ 原始檔。
+set(CMAKE_AUTORCC ON) # 啟用資源檔案 (.qrc) 的自動化處理。Qt 應用程式可以通過 .qrc 檔案方便地載入外部資源如圖片、音訊等。啟用該選項後,CMake會自動將 .qrc 檔案編譯為 C++ 原始檔。
+set(CMAKE_INCLUDE_CURRENT_DIR ON) # 當前目錄加入到 CMake 的頭文件搜索路徑中,使程式可以方便地 include 當前目錄下的頭文件。
 
 ## Specify additional locations of header files
 
